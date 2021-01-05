@@ -5,10 +5,44 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { Provider } from 'react-redux';
+import { createStore } from '@reduxjs/toolkit';
+
+const initialState = {
+  count: 0
+}
+
+const reducer = (state = initialState, action) => {
+  console.log('reducer', state, action);
+
+  switch (action.type) {
+    case 'INCREMENT':
+      return {
+        count: state.count + 1
+      };
+    case 'DECREMENT':
+      return {
+        count: state.count - 1
+      };
+    case 'RESET':
+      return {
+        count: 0
+      }
+    default:
+      return state;
+  }
+}
+
+const store = createStore(reducer);
+store.dispatch({ type: 'INCREMENT' });
+store.dispatch({ type: 'INCREMENT' });
+store.dispatch({ type: 'INCREMENT' });
+store.dispatch({ type: 'DECREMENT' });
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
