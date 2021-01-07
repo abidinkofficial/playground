@@ -5,14 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { Provider } from 'react-redux';
-import { createStore } from '@reduxjs/toolkit';
+import { createStore, applyMiddleware } from '@reduxjs/toolkit';
+import { thunk } from 'redux-thunk';
 
 const initialState = {
   count: 0
 }
 
 const reducer = (state = initialState, action) => {
-  console.log('reducer', state, action);
 
   switch (action.type) {
     case 'INCREMENT':
@@ -30,13 +30,10 @@ const reducer = (state = initialState, action) => {
     default:
       return state;
   }
+
 }
 
-const store = createStore(reducer);
-store.dispatch({ type: 'INCREMENT' });
-store.dispatch({ type: 'INCREMENT' });
-store.dispatch({ type: 'INCREMENT' });
-store.dispatch({ type: 'DECREMENT' });
+const store = createStore(reducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <React.StrictMode>
