@@ -27,3 +27,4 @@ yarn-debug.log*
 yarn-error.log*
 
 /dotnet/RazorPagesApplication/RazorPagesApplication/bin
+dotnet/RazorPagesApplication/RazorPagesApplication/bin
