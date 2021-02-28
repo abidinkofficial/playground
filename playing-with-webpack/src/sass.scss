@@ -1,0 +1,7 @@
+$color-primary: #ff0040;
+
+h1 {
+  &:hover {
+    color: $color-primary;
+  }
+}
